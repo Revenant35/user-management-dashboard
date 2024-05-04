@@ -3,17 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import {DarkModeToggle} from "@/components/dark-mode-toggle";
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuList
-} from "@/components/ui/navigation-menu";
+import {NavigationMenu, NavigationMenuItem, NavigationMenuList} from "@/components/ui/navigation-menu";
 
 export default function NavMenu() {
     return (
         <header>
             <NavigationMenu>
-                <NavigationMenuList className={"w-screen justify-between px-8 py-2"}>
+                <NavigationMenuList className={"w-screen flex flex-row gap-2 px-8 py-2"}>
                     <NavigationMenuItem>
                         <Link href={'/'}>
                             <Image
