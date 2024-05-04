@@ -2,10 +2,12 @@
 
 import {
     ColumnDef,
+    ColumnFiltersState,
     flexRender,
     getCoreRowModel,
     getPaginationRowModel,
     getSortedRowModel,
+    getFilteredRowModel,
     useReactTable,
 } from "@tanstack/react-table"
 
@@ -20,6 +22,7 @@ import {
 import {SortingState} from "@tanstack/table-core";
 import {useState} from "react";
 import {DataTablePagination} from "@/components/tables/table-paginator";
+import {Input} from "@/components/ui/input"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -32,6 +35,7 @@ export default function OrganizationTable<TData, TValue>({
                                                          }: DataTableProps<TData, TValue>) {
 
     const [sorting, setSorting] = useState<SortingState>([])
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
     const table = useReactTable({
         data,
@@ -40,13 +44,34 @@ export default function OrganizationTable<TData, TValue>({
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
+        onColumnFiltersChange: setColumnFilters,
+        getFilteredRowModel: getFilteredRowModel(),
         state: {
             sorting,
+            columnFilters
         }
     })
 
     return (
         <div>
+            <div className="flex justify-start items-center gap-4 py-4">
+                <Input
+                    placeholder="Filter emails..."
+                    value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+                    onChange={(event) =>
+                        table.getColumn("email")?.setFilterValue(event.target.value)
+                    }
+                    className="max-w-sm"
+                />
+                <Input
+                    placeholder="Filter names..."
+                    value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+                    onChange={(event) =>
+                        table.getColumn("name")?.setFilterValue(event.target.value)
+                    }
+                    className="max-w-sm"
+                />
+            </div>
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>

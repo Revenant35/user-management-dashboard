@@ -2,7 +2,7 @@ import {
     ArrowDownIcon,
     ArrowUpIcon,
     CaretSortIcon,
-    EyeNoneIcon, ResetIcon,
+    ResetIcon,
 } from "@radix-ui/react-icons"
 import { Column } from "@tanstack/react-table"
 
@@ -12,7 +12,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {HTMLAttributes} from "react";

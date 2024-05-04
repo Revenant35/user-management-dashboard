@@ -22,7 +22,7 @@ export default function RootLayout({children}: Readonly<{
     return (
         <html lang="en">
             <body className={cn(
-                "min-h-screen bg-background font-sans antialiased",
+                "m-0 p-0 overflow-x-hidden min-h-screen w-dvw bg-background font-sans antialiased",
                 fontSans.variable
             )}>
                 <ThemeProvider
