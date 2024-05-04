@@ -12,17 +12,10 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {User} from "@/models/user";
 
 
-export type Organization = {
-    id: string;
-    name: string;
-    email: string;
-    is_subscribed: boolean;
-    created_at: Date;
-}
-
-export const columns: ColumnDef<Organization>[] = [
+export const columns: ColumnDef<User>[] = [
     {
         accessorKey: "name",
         header: ({column}) => (
@@ -66,7 +59,7 @@ export const columns: ColumnDef<Organization>[] = [
         id: "actions",
         header: "Actions",
         cell: ({row}) => {
-            const organization = row.original
+            const user = row.original
 
             return (
                 <div className={"flex flex-row justify-center"}>
@@ -79,18 +72,18 @@ export const columns: ColumnDef<Organization>[] = [
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(organization.id)}>
+                            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
                                 <Copy className={"mr-2"}></Copy>
-                                Copy Organization ID
+                                Copy User ID
                             </DropdownMenuItem>
                             <DropdownMenuSeparator/>
                             <DropdownMenuItem>
                                 <Eye className={"mr-2"}></Eye>
-                                View Organization
+                                View User
                             </DropdownMenuItem>
                             <DropdownMenuItem className={"text-red-500"}>
                                 <Trash2 className={"mr-2"}></Trash2>
-                                Delete Organization
+                                Delete User
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
